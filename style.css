@@ -29,14 +29,14 @@ nav ul{display:flex;gap:22px;list-style:none;align-items:center}
 nav a{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
 nav a:hover{color:var(--cyan)}
 .burger{display:none;background:none;border:0;font-size:1.8rem;color:var(--navy);cursor:pointer}
-/* hero */
-.hero{padding:0;margin-top:70px;background:var(--navy2);color:#fff}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-top:60px;padding-bottom:60px}
-.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#fff;text-transform:uppercase}
-.hero h1 b{font-weight:800;display:block;color:#fff}
-.hero p{margin:20px 0 30px;color:#d6def0;max-width:520px}
-.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
-.hero img{border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.35);width:100%;max-height:560px;object-fit:cover}
+/* hero: full-screen background image (replace images/hero-bg.jpg) */
+.hero{margin-top:70px;min-height:calc(100vh - 70px);padding:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:linear-gradient(rgba(24,44,94,.55),rgba(14,26,60,.78)),url(images/hero-bg.jpg) center/cover no-repeat}
+.hero .wrap{padding-top:80px;padding-bottom:80px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:300;color:#fff;text-transform:uppercase;letter-spacing:.03em}
+.hero h1 b{font-weight:800;display:block}
+.hero p{margin:22px auto 34px;color:#e3e9f6;max-width:620px;font-size:1.05rem}
+.hero .btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.hero .btn{padding:15px 36px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:-1px;background:var(--navy);padding:26px 0}
 .stats div{text-align:center;color:#fff;font-size:.85rem}
 .stats b{display:block;font-size:1.3rem;color:var(--cyan)}
@@ -88,7 +88,7 @@ footer.foot img{height:44px}
 .rv{opacity:0;transform:translateY(22px);transition:.7s}
 .rv.in{opacity:1;transform:none}
 @media(max-width:900px){
-.hero .wrap,.two,.cards,.legacy{grid-template-columns:1fr}
+.two,.cards,.legacy{grid-template-columns:1fr}
 .team{grid-template-columns:repeat(2,1fr)}
 .stats{grid-template-columns:repeat(2,1fr)}
 .burger{display:block}
@@ -96,4 +96,28 @@ nav ul{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;fl
 nav ul.open{display:flex}
 section{padding:60px 0}
 .legacy img{max-width:200px}
+}
+
+.soc a{background:var(--cyan);transition:.2s}.soc a:hover{background:#fff}.soc img{width:24px;height:24px;object-fit:contain}
+footer.foot .soc a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;line-height:0}
+footer.foot .soc img{width:22px;height:22px;margin:0;display:block;object-fit:contain}
+/* hero v2: client image (already tinted navy), content on the left */
+.hero{min-height:clamp(560px,calc(100vh - 70px),780px);justify-content:flex-start;text-align:left;background:url(images/hero-bg.jpg) right center/cover no-repeat,var(--navy2)}
+.hero .wrap{width:100%}
+.hero .wrap>*{max-width:560px}
+.hero p{margin:22px 0 34px}
+.hero .btns{justify-content:flex-start}
+@media(max-width:900px){.hero{background:linear-gradient(rgba(24,44,94,.6),rgba(14,26,60,.75)),url(images/hero-bg.jpg) 72% center/cover no-repeat,var(--navy2)}}
+/* hero v3: show the FULL image (original size, no cropping) */
+.hero{min-height:max(calc(100vw * 2361 / 6736),460px);background:url(images/hero-bg.jpg) center top/100% auto no-repeat,#10213b;padding:0}
+@media(max-width:900px){.hero{background:url(images/hero-bg.jpg) center top/100% auto no-repeat,#10213b;min-height:0;padding-top:calc(100vw * 2361 / 6736);justify-content:flex-start}.hero .wrap{padding-top:30px;padding-bottom:50px}.hero .wrap>*{max-width:none}}
+/* hero v4: hero height = image height exactly (no extra colour band); content scales to sit on the image */
+@media(min-width:901px){
+.hero{min-height:0;aspect-ratio:6736/2361;padding:0;background-size:100% 100%}
+.hero .wrap{padding-top:0;padding-bottom:0}
+.hero .wrap>*{max-width:50vw}
+.hero h1{font-size:clamp(1.7rem,3.5vw,4.2rem);line-height:1.1}
+.hero .eyebrow{font-size:clamp(.6rem,.75vw,.85rem);margin-bottom:1vw}
+.hero p{font-size:clamp(.8rem,1.1vw,1.1rem);margin:1.4vw 0 2vw;max-width:38vw}
+.hero .btn{padding:clamp(9px,.8vw,15px) clamp(18px,1.9vw,36px);font-size:clamp(.75rem,.9vw,.95rem)}
 }
