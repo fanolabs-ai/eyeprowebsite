@@ -8,6 +8,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* CSR row: Modern outlets 1 : CSR 2, same height */
+.cards.csr-row{grid-template-columns:1fr 2fr;align-items:stretch}
+.csr-card{display:flex;flex-direction:column}
+.csr-gal{position:relative;overflow:hidden;border-radius:12px;margin-top:18px;flex:1;min-height:210px;cursor:zoom-in;background:#e8edf5}
+.csr-track{display:flex;height:100%;transition:transform .7s ease}
+.csr-slide{min-width:100%;height:100%}
+.csr-slide img{width:100%;height:100%;object-fit:cover}
+.csr-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#233d7d;font-size:1rem;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);z-index:2}
+.csr-btn:hover{background:#00a9e8;color:#fff}
+.csr-btn.prev{left:10px}.csr-btn.next{right:10px}
+.csr-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+.csr-dot{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.6);cursor:pointer;padding:0}
+.csr-dot.on{background:#00a9e8}
+.csr-lb{position:fixed;inset:0;background:rgba(10,18,40,.9);display:none;align-items:center;justify-content:center;z-index:200;cursor:zoom-out;padding:20px}
+.csr-lb.show{display:flex}.csr-lb img{max-width:100%;max-height:90vh;border-radius:10px}
+@media(max-width:900px){.cards.csr-row{grid-template-columns:1fr}.csr-gal{min-height:240px}}
+.outlet-card{display:flex;flex-direction:column}
+.outlet-pic{position:relative;flex:1;min-height:210px;margin-top:18px;border-radius:12px;overflow:hidden;background:#e8edf5}
+.outlet-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+</style>
 </head>
 <body>
 
@@ -187,10 +208,19 @@
     <p>Each modern outlet will offer a comfortable, efficient customer journey, from consultation and eye examination to frame selection, fitting and after-sales support, with modern optometric technology and attractive product displays.</p>
    </div>
   </div>
-  <div class="cards">
-   <div class="card rv"><h3>Financial plan</h3><p>Focused on stability, responsible cost management and sustainable growth. Revenue comes from optometric services, eyewear sales, contact lenses and corporate programmes, with profits reinvested in technology, staff development, marketing and service improvements.</p></div>
-   <div class="card rv"><h3>Modern outlets</h3><p>Welcoming, professionally designed outlets that combine advanced eye-care services with contemporary eyewear retail, and a consistent brand experience across every location.</p></div>
-   <div class="card rv"><h3>CSR</h3><p>Eye-health awareness campaigns, vision screenings and partnerships with schools, businesses and charitable organisations, with particular attention to children, elderly persons and people with limited access to eye care.</p></div>
+  <div class="cards csr-row">
+   <div class="card rv outlet-card"><h3>Modern outlets</h3><p>Welcoming, professionally designed outlets that combine advanced eye-care services with contemporary eyewear retail, and a consistent brand experience across every location.</p>
+    <div class="outlet-pic"><img src="images/modern-outlet.jpg" alt="Modern EyePro optical outlet"></div>
+   </div>
+   <div class="card rv csr-card"><h3>CSR</h3><p>Eye-health awareness campaigns, vision screenings and partnerships with schools, businesses and charitable organisations, with particular attention to children, elderly persons and people with limited access to eye care.</p>
+    <!-- CSR gallery: add/remove pictures by editing the csr-slide lines below (images/csr-1.jpg ...) -->
+    <div class="csr-gal" id="csrGal">
+     <div class="csr-track"><div class="csr-slide"><img src="images/csr-1.jpg" alt="CSR activity 1"></div><div class="csr-slide"><img src="images/csr-2.jpg" alt="CSR activity 2"></div><div class="csr-slide"><img src="images/csr-3.jpg" alt="CSR activity 3"></div><div class="csr-slide"><img src="images/csr-4.jpg" alt="CSR activity 4"></div></div>
+     <button class="csr-btn prev" aria-label="Previous picture">&#10094;</button>
+     <button class="csr-btn next" aria-label="Next picture">&#10095;</button>
+     <div class="csr-dots"><button class="csr-dot" aria-label="Picture 1"></button><button class="csr-dot" aria-label="Picture 2"></button><button class="csr-dot" aria-label="Picture 3"></button><button class="csr-dot" aria-label="Picture 4"></button></div>
+    </div>
+   </div>
   </div>
  </div>
 </section>
@@ -202,9 +232,9 @@
    <h2>Get <b>in touch</b></h2>
    <p class="lead">Book an eye examination, ask about eyewear or request a corporate eye-care programme for your team.</p>
    <div class="info">
-    <p><b>Phone</b><span>5 253 12 02 / 218 82 65</span></p>
-    <p><b>Email</b><a href="mailto:info@eyeproptical.com">info@eyeproptical.com</a></p>
-    <p><b>Address</b><span>37, Louis Pasteur St, Safar Court Building, Port Louis (Near Citadelle Mall)</span></p>
+    <p><b style="color:#00a9e8">Phone</b><span>5 253 12 02 / 218 82 65</span></p>
+    <p><b style="color:#00a9e8">Email</b><a href="mailto:info@eyeproptical.com">info@eyeproptical.com</a></p>
+    <p><b style="color:#00a9e8">Address</b><span>37, Louis Pasteur St, Safar Court Building, Port Louis (Near Citadelle Mall)</span></p>
    </div>
    <iframe class="map" loading="lazy" title="EyePro location" src="https://www.google.com/maps?q=37+Louis+Pasteur+Street+Safar+Court+Building+Port+Louis+Mauritius&output=embed"></iframe>
   </div>
@@ -222,14 +252,32 @@
 <footer class="foot"><div class="wrap">
  <img src="images/logo-whitecopy.png" alt="EyePro by Shaheen">
  <div>© <span id="yr">2026</span> EyePro Optical, a brand of Adams Vision Ltd. All rights reserved.</div>
- <div class="soc">
-  <a href="#" aria-label="Facebook"><img src="images/social-facebook.png" alt="Facebook"></a>
-  <a href="#" aria-label="Instagram"><img src="images/social-instagram.png" alt="Instagram"></a>
-  <a href="#" aria-label="TikTok"><img src="images/social-tiktok.png" alt="TikTok"></a>
-  <a href="#" aria-label="LinkedIn"><img src="images/social-linkedin.png" alt="LinkedIn"></a>
+ <div class="soc" style="gap:14px">
+  <a href="https://www.facebook.com/profile.php?id=61588337842148&rdid=XpJym9TLEtGDBK5L&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18pV2Td27S%2F" aria-label="Facebook" style="background:none;width:40px;height:40px;display:block" target="_blank"><img src="images/social-facebook.png" alt="Facebook" width="40" height="40" style="width:40px;height:40px;display:block;object-fit:contain"></a>
+  <a href="https://www.instagram.com/eyepro_optical?igsh=MTZnczduMXQwbmxzdw%3D%3D" aria-label="Instagram" style="background:none;width:40px;height:40px;display:block" target="_blank"><img src="images/social-instagram.png" alt="Instagram" width="40" height="40" style="width:40px;height:40px;display:block;object-fit:contain"></a>
+  <a href="https://www.tiktok.com/@eyepro.optical?_r=1&_t=ZS-95gg9L3TvU5" aria-label="TikTok" style="background:none;width:40px;height:40px;display:block" target="_blank"><img src="images/social-tiktok.png" alt="TikTok" width="40" height="40" style="width:40px;height:40px;display:block;object-fit:contain"></a>
+  <a href="#" aria-label="LinkedIn" style="background:none;width:40px;height:40px;display:block" target="_blank"><img src="images/social-linkedin.png" alt="LinkedIn" width="40" height="40" style="width:40px;height:40px;display:block;object-fit:contain"></a>
  </div>
 </div></footer>
 
 <script src="script.js"></script>
+<script>
+(function(){
+ var g=document.getElementById('csrGal');if(!g)return;
+ var t=g.querySelector('.csr-track'),n=t.children.length,i=0,timer,d=g.querySelectorAll('.csr-dot');
+ function go(k){i=(k+n)%n;t.style.transform='translateX(-'+i*100+'%)';d.forEach(function(x,j){x.classList.toggle('on',j===i)})}
+ function start(){stop();timer=setInterval(function(){go(i+1)},4000)}  /* change 4000 = ms between pictures */
+ function stop(){clearInterval(timer)}
+ g.querySelector('.prev').onclick=function(e){e.stopPropagation();go(i-1);start()};
+ g.querySelector('.next').onclick=function(e){e.stopPropagation();go(i+1);start()};
+ d.forEach(function(x,j){x.onclick=function(e){e.stopPropagation();go(j);start()}});
+ g.addEventListener('mouseenter',stop);g.addEventListener('mouseleave',start);
+ var lb=document.createElement('div');lb.className='csr-lb';lb.innerHTML='<img alt="">';document.body.appendChild(lb);
+ g.addEventListener('click',function(){lb.firstChild.src=t.children[i].querySelector('img').src;lb.classList.add('show');stop()});
+ lb.onclick=function(){lb.classList.remove('show');start()};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('show'))lb.onclick();if(!lb.classList.contains('show')){if(e.key==='ArrowLeft'&&0){}}});
+ go(0);start();
+})();
+</script>
 </body>
 </html>
